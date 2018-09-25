@@ -38,7 +38,7 @@ class Board:
     def Reveal(self):
         bombs = 0
         pos = self.getPos()
-        tile = self.grid[pos[1]][pos[0]]
+        tile = self.grid[pos[1]-1][pos[0]]
         if(tile.hidden):
             tile.hidden = False
             if(tile.countAdjecentBombs() == 0):
@@ -46,7 +46,7 @@ class Board:
 
     def Mark(self):
         pos = self.getPos()
-        tile = self.grid[pos[1]][pos[0]]
+        tile = self.grid[pos[1]-1][pos[0]]
         if(tile.hidden):
             tile.marked = not tile.marked
             

@@ -81,14 +81,15 @@ def Main():
             start = not start
         if(state == states[1]):
             mineField.update()
-            if(mineField.status == "game over"):
+            if(mineField.status == states[2]):
                 for x in range(mineField.width):
                     for y in range(mineField.height):
                         if(mineField.grid[y][x].bomb):
                             mineField.grid[y][x].hidden = False
                 mineField.status = "new game"
-                
+                state = "app"
                 print("Game over type new game to retry")
+                print(mineField.status)
             mineField.printBoard()
             
                 
