@@ -45,15 +45,15 @@ class Tile:
     def setDisplay(self):
         if(self.marked):
             self.display = self.chars[3]
-            pass
-        if(self.hidden):
-            self.display = self.chars[0]
         else:
-            if(self.countAdjecentBombs() == 0):
-                self.display = self.chars[1]
+            if(self.hidden):
+                self.display = self.chars[0]
             else:
-                self.display = self.countAdjecentBombs()
-            if(self.bomb):
-                self.display = self.chars[2]
-            
+                if(self.countAdjecentBombs() == 0):
+                    self.display = self.chars[1]
+                else:
+                    self.display = self.countAdjecentBombs()
+                if(self.bomb):
+                    self.display = self.chars[2]
+                
     

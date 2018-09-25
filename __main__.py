@@ -75,12 +75,23 @@ def Main():
     start = True
     while True:
         clear()
+        global state
         if(start):
             About()
             start = not start
         if(state == states[1]):
             mineField.update()
+            if(mineField.status == "game over"):
+                for x in range(mineField.width):
+                    for y in range(mineField.height):
+                        if(mineField.grid[y][x].bomb):
+                            mineField.grid[y][x].hidden = False
+                mineField.status = "new game"
+                
+                print("Game over type new game to retry")
             mineField.printBoard()
+            
+                
         
         command = input()
         try:

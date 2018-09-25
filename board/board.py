@@ -38,40 +38,33 @@ class Board:
     def Reveal(self):
         bombs = 0
         pos = self.getPos()
-        tile = self.grid[pos[1]-1][pos[0]-1]
+        tile = self.grid[pos[1]][pos[0]]
         if(tile.hidden):
             tile.hidden = False
             if(tile.countAdjecentBombs() == 0):
                 tile.refealInnocents()
-        """else:
-            for i in tile.adjecent:
-                print(i.x, end=", ")
-                print(i.y, end=": ")
-                print(i.bomb)
-        """
 
     def Mark(self):
         pos = self.getPos()
-        tile = self.grid[pos[0]-1][pos[1]-1]
+        tile = self.grid[pos[1]][pos[0]]
         if(tile.hidden):
-            tile.checked = not tile.checked
-        
-        """for x in range(self.width):
-            for y in range(self.height):
-                if(self.grid[y][x].countAdjecentBombs() == 0):
-                    print(x, end=",")
-                    print(y)
-        """
+            tile.marked = not tile.marked
+            
     def getPos(self):
         print("fill coordinate x ", end="")
         x = input()
         print("fill coordinate y ", end="")
         y = input()
-        pos = [int(x),int(y)]
+        print(ord(x.upper())-65)
+        pos = [ord(x.upper())-65,int(y)]
         return pos
     
     def printBoard(self):
-        print("  ╔", end="")
+        print("   ", end="")
+        for i in range(self.width):
+            print(chr(65+i),end="")
+        
+        print("\n  ╔", end="")
         for val in range(self.width):
             print("═",end="")
         print("╗")
